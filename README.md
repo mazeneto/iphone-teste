@@ -27,6 +27,10 @@ index.html
 assets/
   css/style.css          estilos da página
   js/main.js             animações (GSAP, Lenis, WarpText, aurora, etc.)
+  img/pessoas.webp       foto original do card de abertura
+  img/pessoas-fundo.webp fundo sem as pessoas (é ele que desfoca)
+  img/pessoas-recorte.webp pessoas recortadas, sempre nítidas
+  img/cidade.webp        foto do card de zoom
 vendor/
   gsap.min.js            GSAP 3.12.5
   ScrollTrigger.min.js   plugin ScrollTrigger 3.12.5
@@ -39,10 +43,11 @@ vendor/
 |------|--------|
 | Fundo da página | fundo quase preto com pinceladas de azul e uma aurora sutil (WebGL2) |
 | Título do hero | WarpText (WebGL2): lente de vidro que segue o mouse |
-| Hero | partículas que desviam do cursor, parallax 3D dos aparelhos, botões magnéticos |
+| Hero | partículas que desviam do cursor, parallax 3D dos aparelhos |
+| Botões | magnéticos, seguem levemente o cursor |
 | Design | seção fixa em que o aparelho gira conforme o scroll |
 | Texto | revelação palavra por palavra, decriptação e contadores |
-| Câmeras | cards bento com spotlight e tilt, abertura variável e zoom no scroll |
+| Câmeras | cards bento com spotlight e tilt; slider de abertura que desfoca só o fundo da foto (pessoas recortadas em camada separada) e zoom de 1x a 8x na foto da cidade, controlado por slider ou pela rodinha do mouse (aproxima onde está o cursor) |
 | Marquee | velocidade e direção seguem o scroll |
 | Cores | seletor que gira o aparelho e troca a cor de destaque |
 | Recursos | cards empilhados com `position: sticky` |

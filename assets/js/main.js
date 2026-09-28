@@ -291,8 +291,25 @@ if (fine && !reduce){
 
 /* ---------- Aperture control ---------- */
 const apR=document.getElementById('apRange'), apBg=document.getElementById('apBg'), apVal=document.getElementById('apVal'), apIris=document.getElementById('apIris');
-function ap(){ const v=apR.value/10; const t=(apR.value-14)/26; apVal.textContent='f/'+v.toFixed(1); apBg.style.filter=`blur(${(1-t)*14}px)`; const s=Math.round(14-t*10); apIris.style.width=s+'px'; apIris.style.height=s+'px'; }
+function ap(){ const v=apR.value/10; const t=(apR.value-14)/26; apVal.textContent='f/'+v.toFixed(1); apBg.style.filter=`blur(${((1-t)*5).toFixed(1)}px)`; apBg.style.opacity=Math.min(1,(1-t)*2.2).toFixed(2); const s=Math.round(14-t*10); apIris.style.width=s+'px'; apIris.style.height=s+'px'; }
 apR.addEventListener('input', ap); ap();
+
+/* ---------- Zoom control (slider + roda do mouse) ---------- */
+(function(){
+  const scene=document.getElementById('zoomScene'), inner=document.getElementById('zoomInner'), label=document.getElementById('zoomLabel'), range=document.getElementById('zoomRange');
+  let target=1, cur=1, raf=0;
+  const draw=()=>{ inner.style.transform=`scale(${Math.pow(cur,.56).toFixed(4)})`; label.textContent=(Math.round(cur*10)/10).toFixed(1).replace('.0','')+'x'; };
+  const step=()=>{ cur+=(target-cur)*(reduce?1:.18); if(Math.abs(target-cur)<.004){cur=target;raf=0;draw();return;} draw(); raf=requestAnimationFrame(step); };
+  const set=v=>{ target=Math.min(8,Math.max(1,v)); range.value=target; if(!raf) raf=requestAnimationFrame(step); };
+  range.addEventListener('input',()=>set(+range.value));
+  scene.addEventListener('wheel',e=>{
+    e.preventDefault();
+    const r=scene.getBoundingClientRect();
+    if(target<=1.01) inner.style.transformOrigin=`${((e.clientX-r.left)/r.width*100).toFixed(1)}% ${((e.clientY-r.top)/r.height*100).toFixed(1)}%`;
+    set(target*Math.exp(-e.deltaY*0.0022));
+  },{passive:false});
+  draw();
+})();
 
 /* ---------- Colors ---------- */
 const root=document.documentElement, colorPhone=document.getElementById('colorPhone');
@@ -399,10 +416,6 @@ document.querySelectorAll('.count').forEach(el=>ScrollTrigger.create({trigger:el
 /* Bento cards */
 gsap.from('.bento .card',{y:80,opacity:0,duration:1.2,ease:'expo.out',stagger:.08,scrollTrigger:{trigger:'.bento',start:'top 82%'}});
 
-/* Zoom scrub */
-const zl=document.getElementById('zoomLabel');
-gsap.fromTo('#zoomInner',{scale:1},{scale:3.2,ease:'none',scrollTrigger:{trigger:'#zoomScene',start:'top 85%',end:'bottom 20%',scrub:true,onUpdate:s=>{zl.textContent=(1+s.progress*7).toFixed(1).replace('.0','')+'x';}}});
-gsap.to('#zoomInner .h3',{yPercent:-20,ease:'none',scrollTrigger:{trigger:'#zoomScene',start:'top 85%',end:'bottom 20%',scrub:true}});
 
 /* Colors */
 gsap.from('#colorPhone',{y:120,opacity:0,duration:1.6,ease:'expo.out',scrollTrigger:{trigger:'.color-stage',start:'top 80%'}});

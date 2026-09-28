@@ -109,8 +109,9 @@
           <p class="k">Fusion 48 MP · Abertura variável</p>
           <h3>De f/1.4 a f/4. Arraste.</h3>
           <div class="ap-scene">
-            <div class="ap-bg" id="apBg"></div>
-            <div class="ap-subject"></div>
+            <img src="assets/img/pessoas.webp" alt="Duas pessoas sorrindo em uma escada" width="1400" height="894" loading="lazy" decoding="async">
+            <img class="ap-blur" id="apBg" src="assets/img/pessoas-fundo.webp" alt="" width="1400" height="894" loading="lazy" decoding="async">
+            <img src="assets/img/pessoas-recorte.webp" alt="" width="1400" height="894" loading="lazy" decoding="async">
             <div class="ap-hud"><span class="ap-iris"><i id="apIris"></i></span><span class="num" id="apVal">f/1.4</span></div>
           </div>
           <label class="ap-ctrl" for="apRange">f/1.4<input type="range" id="apRange" min="14" max="40" value="14" aria-label="Abertura">f/4</label>
@@ -118,9 +119,11 @@
         <article class="card tilt c-zoom">
           <p class="k">Teleobjetiva 48 MP</p>
           <h3>Zoom óptico de 8x.</h3>
-          <div class="zoom-scene" id="zoomScene">
-            <div class="zoom-inner" id="zoomInner"><div class="sun"></div><div class="hill h1"></div><div class="hill h2"></div><div class="hill h3"></div></div>
+          <p>Arraste ou use a rodinha do mouse na foto.</p>
+          <div class="zoom-scene" id="zoomScene" data-lenis-prevent>
+            <div class="zoom-inner" id="zoomInner"><img src="assets/img/cidade.webp" alt="Vista aérea de uma cidade ao amanhecer" width="2400" height="1089" loading="lazy" decoding="async"></div>
             <span class="zoom-label num" id="zoomLabel">1x</span>
+            <label class="zoom-ctrl" for="zoomRange"><span>1x</span><input type="range" id="zoomRange" min="1" max="8" step="0.1" value="1" aria-label="Zoom"><span>8x</span></label>
           </div>
         </article>
         <article class="card tilt c-video">
