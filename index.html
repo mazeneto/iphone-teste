@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Site conceito do iPhone 18 Pro com animações de scroll e WebGL.">
+<meta name="theme-color" content="#010207">
+<title>iPhone 18 Pro Conceito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div id="bgFx" aria-hidden="true"></div>
+<canvas id="auroraBg" aria-hidden="true"></canvas>
+<div id="grain" aria-hidden="true"></div>
+<canvas id="spark" aria-hidden="true"></canvas>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">iPhone 18 Pro <span class="pill">Conceito</span></a>
+    <nav class="nav-links" aria-label="Seções">
+      <a href="#design">Design</a>
+      <a href="#chip">Chip</a>
+      <a href="#camera">Câmeras</a>
+      <a href="#cores">Cores</a>
+      <a href="#recursos">Recursos</a>
+    </nav>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<main id="top">
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="wrap">
+      <p class="eyebrow">Novo</p>
+      <h1 class="sr-only">iPhone 18 Pro</h1>
+      <div class="warp" id="warpTitle" aria-hidden="true"><span class="warp-fallback">iPhone 18 Pro</span></div>
+      <p class="sub shiny">Pro de um jeito que você nunca viu.</p>
+      <div class="btns">
+        <a class="btn btn-primary magnet" href="#design"><span>Conhecer</span></a>
+        <a class="btn btn-ghost magnet" href="#cores"><span>Ver as cores ›</span></a>
+      </div>
+    </div>
+    <div class="hero-stage" id="heroStage">
+      <div class="hero-phones" id="heroPhones">
+        <div class="phone p2" data-phone></div>
+        <div class="phone p1" data-phone></div>
+      </div>
+      <div class="glow-floor"></div>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">Role<b></b></div>
+  </section>
+
+  <!-- DESIGN PIN -->
+  <section class="design" id="design">
+    <div class="design-stage"><div class="phone" id="designPhone" data-phone></div></div>
+    <div class="captions">
+      <div class="cap c1"><p class="k">Design</p><h3>Unibody de alumínio forjado.</h3><p>Uma peça só, mais leve e mais fria ao toque, com a borda polida que dissipa calor.</p></div>
+      <div class="cap c2"><p class="k">Tela</p><h3>Face ID debaixo da tela.</h3><p>A Ilha Dinâmica encolheu. Sobra mais tela e menos distração.</p></div>
+      <div class="cap c3"><p class="k">Câmeras</p><h3>Platô de ponta a ponta.</h3><p>Três câmeras de 48 MP alinhadas num bloco que atravessa o aparelho.</p></div>
+    </div>
+  </section>
+
+  <!-- SCROLL REVEAL -->
+  <section class="sec">
+    <div class="wrap">
+      <p class="reveal-text" id="revealText">Cada detalhe foi repensado. O corpo é mais fino, a bateria é maior e a câmera enxerga no escuro como nunca. Tudo movido pelo <em>chip A20 Pro</em>, o primeiro feito em <em>2 nanômetros</em>.</p>
+    </div>
+  </section>
+
+  <!-- CHIP -->
+  <section class="sec chip-sec" id="chip">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Chip A20 Pro</p>
+        <h2 class="decrypt" data-text="Potência que não esquenta.">Potência que não esquenta.</h2>
+        <p>Processo de 2 nm, câmara de vapor redesenhada e um Neural Engine pensado para rodar a Apple Intelligence inteira no aparelho.</p>
+      </div>
+      <div class="chip-wrap">
+        <div class="chip">
+          <div class="chip-grid" id="chipGrid"></div>
+          <div class="chip-label"><b>A20</b><span>PRO</span></div>
+        </div>
+      </div>
+      <div class="stats">
+        <div class="stat"><b class="num"><span class="count" data-to="15" data-prefix="+">+0</span>%</b><span>CPU mais rápida</span></div>
+        <div class="stat"><b class="num"><span class="count" data-to="20" data-prefix="+">+0</span>%</b><span>desempenho gráfico</span></div>
+        <div class="stat"><b class="num"><span class="count" data-to="35" data-prefix="+">+0</span>%</b><span>Neural Engine</span></div>
+      </div>
+      <p class="note">Números ilustrativos do conceito, comparados ao A19 Pro.</p>
+    </div>
+  </section>
+
+  <!-- CAMERA BENTO -->
+  <section class="sec" id="camera">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Sistema de câmeras Pro</p>
+        <h2>A luz agora <span class="grad">obedece você.</span></h2>
+        <p>A câmera principal ganhou abertura variável de verdade. Você decide quanto fundo desfocar, direto no sensor.</p>
+      </div>
+      <div class="bento">
+        <article class="card tilt c-aperture">
+          <p class="k">Fusion 48 MP · Abertura variável</p>
+          <h3>De f/1.4 a f/4. Arraste.</h3>
+          <div class="ap-scene">
+            <div class="ap-bg" id="apBg"></div>
+            <div class="ap-subject"></div>
+            <div class="ap-hud"><span class="ap-iris"><i id="apIris"></i></span><span class="num" id="apVal">f/1.4</span></div>
+          </div>
+          <label class="ap-ctrl" for="apRange">f/1.4<input type="range" id="apRange" min="14" max="40" value="14" aria-label="Abertura">f/4</label>
+        </article>
+        <article class="card tilt c-zoom">
+          <p class="k">Teleobjetiva 48 MP</p>
+          <h3>Zoom óptico de 8x.</h3>
+          <div class="zoom-scene" id="zoomScene">
+            <div class="zoom-inner" id="zoomInner"><div class="sun"></div><div class="hill h1"></div><div class="hill h2"></div><div class="hill h3"></div></div>
+            <span class="zoom-label num" id="zoomLabel">1x</span>
+          </div>
+        </article>
+        <article class="card tilt c-video">
+          <p class="k">Vídeo</p>
+          <div class="big-num num"><span class="count" data-to="8">0</span>K</div>
+          <p>Dolby Vision a 60 qps, gravado em ProRes RAW.</p>
+        </article>
+        <article class="card tilt c-selfie">
+          <p class="k">Câmera frontal</p>
+          <div class="big-num num"><span class="count" data-to="24">0</span> MP</div>
+          <p>Sensor quadrado. Selfie na vertical ou na horizontal sem girar o aparelho.</p>
+        </article>
+        <article class="card tilt c-zoomtext">
+          <p class="k">Pouca luz</p>
+          <div class="big-num num"><span class="count" data-to="3">0</span>x</div>
+          <p>Mais luz captada à noite com o novo sensor empilhado.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <section class="marquee" aria-label="Destaques">
+    <div class="mrow r1" id="m1"></div>
+    <div class="mrow r2" id="m2"></div>
+  </section>
+
+  <!-- CORES -->
+  <section class="sec" id="cores">
+    <div class="wrap colors-grid">
+      <div class="color-copy">
+        <p class="eyebrow">Acabamentos</p>
+        <h2>Quatro cores.<br>Nenhuma discreta demais.</h2>
+        <p>Alumínio anodizado com vidro fosco texturizado na traseira. Toque numa cor para girar o aparelho.</p>
+        <div class="swatches" id="swatches" role="group" aria-label="Escolher cor">
+          <button class="sw" style="--c:#8fb0dc" data-name="Azul Céu" data-f="#6d8fc4" data-l="#a3c0e8" data-g="rgba(110,170,240,.5)" aria-pressed="true" aria-label="Azul Céu"></button>
+          <button class="sw" style="--c:#6b1f2c" data-name="Cereja Profunda" data-f="#5b1a24" data-l="#8e3442" data-g="rgba(190,60,80,.55)" aria-pressed="false" aria-label="Cereja Profunda"></button>
+          <button class="sw" style="--c:#c9ccd2" data-name="Titânio Névoa" data-f="#9ea2a9" data-l="#dfe2e7" data-g="rgba(200,210,230,.35)" aria-pressed="false" aria-label="Titânio Névoa"></button>
+          <button class="sw" style="--c:#3a3d44" data-name="Grafite Noturno" data-f="#26282d" data-l="#4d5058" data-g="rgba(120,130,160,.35)" aria-pressed="false" aria-label="Grafite Noturno"></button>
+        </div>
+        <p class="color-name" id="colorName" aria-live="polite">Azul Céu</p>
+      </div>
+      <div class="color-stage">
+        <svg class="ring" viewBox="0 0 130 130" aria-hidden="true">
+          <defs><path id="circ" d="M65,65 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs>
+          <text><textPath href="#circ">iPhone 18 Pro • conceito • 2026 • </textPath></text>
+        </svg>
+        <span class="ring-dot" aria-hidden="true"></span>
+        <div class="phone" id="colorPhone" data-phone></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="sec" id="recursos">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">E tem mais</p>
+        <h2>O resto também <span class="grad">subiu de nível.</span></h2>
+      </div>
+      <div class="stack">
+        <article class="scard" style="--i:0">
+          <div><p class="k">Bateria</p><h3>Até 39 horas de vídeo.</h3><p>Célula de maior densidade e um chip que gasta menos. Termina o dia com folga.</p></div>
+          <div class="viz"><div class="battery"><i id="batFill"></i><b class="num" id="batNum">0%</b></div></div>
+        </article>
+        <article class="scard" style="--i:1">
+          <div><p class="k">Conectividade</p><h3>Modem C2 e Wi‑Fi 7.</h3><p>Sinal mais estável em 5G, menos consumo e conexão por satélite quando não há cobertura.</p></div>
+          <div class="viz"><div class="waves"><i></i><i></i><i></i><b></b></div></div>
+        </article>
+        <article class="scard" style="--i:2">
+          <div><p class="k">Segurança</p><h3>Face ID invisível.</h3><p>Os sensores ficam debaixo da tela. Desbloqueia igual, sem roubar espaço.</p></div>
+          <div class="viz"><div class="faceid"><svg viewBox="0 0 100 100" fill="none" stroke="#ffd60a" stroke-width="3" stroke-linecap="round"><path d="M10 30V18a8 8 0 0 1 8-8h12M70 10h12a8 8 0 0 1 8 8v12M90 70v12a8 8 0 0 1-8 8H70M30 90H18a8 8 0 0 1-8-8V70"/><path d="M35 38v6M65 38v6M50 40v16h-4M38 68c7 6 17 6 24 0"/></svg><span class="scan"></span></div></div>
+        </article>
+        <article class="scard" style="--i:3">
+          <div><p class="k">Controle da Câmera</p><h3>Deslize para ajustar.</h3><p>O botão lateral agora sente pressão e deslize com mais precisão. Zoom, exposição e abertura num gesto.</p></div>
+          <div class="viz"><div class="btn-cam"><i></i></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL -->
+  <section class="final">
+    <div class="wrap">
+      <h2>Pro. Até o fim.</h2>
+      <p>Um conceito de como o próximo iPhone Pro pode ser.</p>
+      <div class="btns">
+        <a class="btn btn-primary magnet" href="#top"><span>Voltar ao topo</span></a>
+        <a class="btn btn-ghost magnet" href="#cores"><span>Escolher cor ›</span></a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>Projeto conceitual de estudo de design e animação, sem vínculo com a Apple. Especificações, nomes de cores e números são ilustrativos e não representam um produto oficial.</p>
+    <p>iPhone é marca registrada da Apple Inc.</p>
+  </div>
+</footer>
+
+<script src="vendor/gsap.min.js"></script>
+<script src="vendor/ScrollTrigger.min.js"></script>
+<script src="vendor/lenis.min.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
